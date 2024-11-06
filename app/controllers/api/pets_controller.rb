@@ -27,14 +27,10 @@ class Api::PetsController < ApplicationController
     render json: pet, status: :created
   end
 
-  def show
-  end
-
 	private
 
 	def set_pet
-		pet_data = $redis.get("pet:#{params[:id]}")
-    @pet = pet_data ? JSON.parse(pet_data) : nil
+    @pet = Pet.find(params[:id]) || nil
 	end
 
 	def pet_params
