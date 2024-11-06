@@ -26,6 +26,12 @@ class Pet
     @@redis.hmset(redis_key, "id", @id, "type", @type, "tracker_type", @tracker_type, "owner_id", @owner_id, "in_zone", @in_zone, "lost_tracker", @lost_tracker)
   end
 
+  def self.all
+    pet_ids = @@redis.smembers('pets')
+    binding.pry
+    pet_ids.map { |id| find(id) }
+  end
+
   # Find a pet by ID
   def self.find(id)
     data = @@redis.hgetall("pet:#{id}")

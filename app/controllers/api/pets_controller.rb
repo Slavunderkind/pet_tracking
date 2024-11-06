@@ -5,9 +5,7 @@ class Api::PetsController < ApplicationController
 
 	# GET /api/pets
   def index
-    keys = $redis.keys("pet:*")
-    pets = keys.map { |key| JSON.parse($redis.get(key)) }
-    render json: pets
+    Pet.all
   end
 
   # GET /api/pets/:id
