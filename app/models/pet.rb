@@ -1,5 +1,5 @@
 require "redis"
-require 'pry'
+
 class Pet
   # enum type: [ :dog, :cat ]
   BOOLEAN_IN_REDIS = {
@@ -23,7 +23,6 @@ class Pet
 
   # Save the pet to Redis
   def save
-    binding.pry
     @@redis.hmset(redis_key, "id", @id, "type", @type, "tracker_type", @tracker_type, "owner_id", @owner_id, "in_zone", @in_zone, "lost_tracker", @lost_tracker)
   end
 
