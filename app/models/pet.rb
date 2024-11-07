@@ -43,6 +43,10 @@ class Pet
     all.count { |pet| pet.in_zone == 0 }
   end
 
+  def self.count
+    all.count
+  end
+
   # Redis key for the pet
   def redis_key
     "pet:#{@id}"

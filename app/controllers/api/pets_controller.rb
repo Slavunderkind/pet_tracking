@@ -1,5 +1,3 @@
-require 'pry'
-
 class Api::PetsController < ApplicationController
 	before_action :set_pet, only: %i[show]
 
