@@ -17,8 +17,8 @@ class Pet
     @type = attributes[:type]
     @tracker_type = attributes[:tracker_type]
     @owner_id = attributes[:owner_id]
-    @in_zone = BOOLEAN_IN_REDIS[:"#{attributes[:in_zone]}"]
-    @lost_tracker = BOOLEAN_IN_REDIS.fetch(:"#{attributes[:lost_tracker]}", 0)
+    @in_zone = parse_boolean(attributes[:in_zone])
+    @lost_tracker = parse_boolean(attributes[:lost_tracker]) || 0
   end
 
   # Save the pet to Redis
@@ -35,7 +35,6 @@ class Pet
   def self.find(id)
     data = @@redis.hgetall("pet:#{id}")
     return nil if data.empty?
-
     new(id: data["id"], type: data["type"], tracker_type: data["tracker_type"], owner_id: data["owner_id"], in_zone: data["in_zone"], lost_tracker: data["lost_tracker"])
   end
 
@@ -50,5 +49,13 @@ class Pet
   # Redis key for the pet
   def redis_key
     "pet:#{@id}"
+  end
+
+  private
+
+  def parse_boolean(value)
+    return value unless value.in? [true, false]
+
+    BOOLEAN_IN_REDIS[:"#{value}"]
   end
 end

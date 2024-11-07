@@ -48,7 +48,7 @@ RSpec.describe Pet do
       expect(found_pet.type).to eq(pet.type)
       expect(found_pet.tracker_type).to eq(pet.tracker_type)
       expect(found_pet.owner_id).to eq(pet.owner_id)
-      expect(found_pet.lost_tracker).to eq(0)
+      expect(found_pet.lost_tracker).to eq('0')
     end
 
     it 'returns nil if the pet does not exist' do
