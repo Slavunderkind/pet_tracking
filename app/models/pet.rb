@@ -39,7 +39,7 @@ class Pet
   end
 
   def self.count_out_of_zone
-    all.count { |pet| pet.in_zone == 0 }
+    all.count { |pet| pet.in_zone == '0' }
   end
 
   def self.count

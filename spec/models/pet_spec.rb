@@ -80,7 +80,7 @@ RSpec.describe Pet do
     end
 
     it 'counts the number of pets out of the zone' do
-      expect(Pet.count_out_of_zone).to eq(0)
+      expect(Pet.count_out_of_zone).to eq(1)
     end
   end
 
