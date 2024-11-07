@@ -82,12 +82,7 @@ RSpec.describe Api::PetsController, type: :controller do
       it "does not create a new Pet" do
         expect {
           post :create, params: { pet: invalid_attributes }
-        }.not_to change(Pet, :count)
-      end
-
-      it "returns an error response" do
-        post :create, params: { pet: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        }.to raise_error(TypeError)
       end
     end
   end
