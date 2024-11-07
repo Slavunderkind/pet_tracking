@@ -5,7 +5,7 @@ class Api::PetsController < ApplicationController
 
 	# GET /api/pets
   def index
-    Pet.all
+    render json: Pet.all
   end
 
   # GET /api/pets/:id

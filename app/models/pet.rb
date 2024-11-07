@@ -27,9 +27,8 @@ class Pet
   end
 
   def self.all
-    pet_ids = @@redis.smembers('pets')
-    binding.pry
-    pet_ids.map { |id| find(id) }
+    all_keys = @@redis.keys("*")
+    all_keys.map { |key| find(key.split(":").last.to_i) }
   end
 
   # Find a pet by ID
