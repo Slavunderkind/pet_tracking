@@ -39,6 +39,10 @@ class Pet
     new(id: data["id"], type: data["type"], tracker_type: data["tracker_type"], owner_id: data["owner_id"], in_zone: data["in_zone"], lost_tracker: data["lost_tracker"])
   end
 
+  def self.count_out_of_zone
+    all.count { |pet| pet.in_zone == 0 }
+  end
+
   # Redis key for the pet
   def redis_key
     "pet:#{@id}"

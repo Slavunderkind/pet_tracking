@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :pets, only: [:index, :show, :create, :update, :destroy]
+    get 'outside_zone', to: 'pets#outside_zone'
   end
   # Defines the root path route ("/")
   # root "posts#index"

@@ -17,6 +17,10 @@ class Api::PetsController < ApplicationController
     end
   end
 
+  def outside_zone
+  	render json: "Pets outside the tracking zone are currently #{Pet.count_out_of_zone}"
+  end
+
 	# POST /api/pets
   def create
     id = $redis.incr("pet_id") # Auto-increment pet ID
